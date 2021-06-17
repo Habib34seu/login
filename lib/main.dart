@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './screens/login_screen.dart';
-import './screens/home_screen.dart';
 import './provider/auth.dart';
+import './screens/company_home_screen.dart';
+import './provider/companies.dart';
+import './provider/company.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +16,14 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
          value: Auth(),
-         )
+         ),
+        //  ChangeNotifierProvider(
+        //  create: (ctx)=>Companies(),
+        //  ),
+         ChangeNotifierProxyProvider<Auth, Companies>(
+         update:(ctx, auth,prevComp) =>Companies(auth.getToken, prevComp == null ? []: prevComp.companies),
+         ),
+        
       ],
         child:Consumer<Auth>(
           builder: (ctx, auth,_)=>MaterialApp(
@@ -22,15 +31,13 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: auth.isAuth ?  HomeScreen() : AuthScreen(),
+            home: auth.isAuth ?  CompanyHomeScreen() : AuthScreen(),
             routes: {
-              HomeScreen.routeName:(ctx)=>HomeScreen(),
+              CompanyHomeScreen.routeName:(ctx)=>CompanyHomeScreen(),
             },
           ),
         ) ,
     );
   }
-}
-
-// auth.isAuth ?  HomeScreen() : 
+} 
 

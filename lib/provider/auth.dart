@@ -45,16 +45,16 @@ class Auth with ChangeNotifier {
       final responseData = json.decode(response.body);
 
       if (response.statusCode == 200) {
-         print(responseData);
-        // return responseData;
-        // print(responseData);
-        // print(responseData['user']['username']);
-        // // print(responseData['token']);
-         _token = responseData['token'];
-         _expiryDate = DateTime.now().add(
-           Duration(days: int.parse(responseData['expires_in'])),
-         );
+        _token = responseData['token'];
+         final time=responseData['expires_in'];
+         final arr=time.split('.');
+         final extractedTime=int.parse(arr[0]);
+         DateTime expTime=DateTime.now().add(Duration(seconds: extractedTime));
+
+         _expiryDate= expTime;
+        
        print(_expiryDate);
+       print(responseData);
         notifyListeners();
       }
       //  Navigator.of(context).pushReplacementNamed('/home');
