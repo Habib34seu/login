@@ -12,7 +12,18 @@ class CompanyHomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Syscomod'),
       ),
-      body: CompanyGrid(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Card(
+            child: CompanyGrid()
+          ),
+          Card(
+            child: Text('Hello')
+          )
+        ],
+        ),
     );
   }
 }

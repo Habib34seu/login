@@ -36,16 +36,16 @@ class _CompanyGridState extends State<CompanyGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: _isLoading
-            ? CircularProgressIndicator()
-            : Text(
-                _companies[0]['nombre'],
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-      ),
-    );
+    return Center(
+              child: _isLoading ? CircularProgressIndicator():Container(
+              width: double.infinity,
+              height: 70,
+              child: Text(
+                    _companies[0]['nombre'],
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                  ),
+            )
+     ) ;
   }
 }
