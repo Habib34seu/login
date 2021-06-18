@@ -5,7 +5,6 @@ import './screens/login_screen.dart';
 import './provider/auth.dart';
 import './screens/company_home_screen.dart';
 import './provider/companies.dart';
-import './provider/company.dart';
 
 void main() => runApp(MyApp());
 

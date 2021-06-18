@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/reports_widget.dart';
 import '../widgets/company_grid.dart';
 
 class CompanyHomeScreen extends StatelessWidget {
@@ -12,18 +13,24 @@ class CompanyHomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Syscomod'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Card(
-            child: CompanyGrid()
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Card(
+              child: Container(
+                height: 70,
+                child: CompanyGrid()
+              ),
+              elevation: 8.0,
+            ),
+            Card(
+              elevation: 8.0,
+              child: ReportsWidget()
+            )
+          ],
           ),
-          Card(
-            child: Text('Hello')
-          )
-        ],
-        ),
+      ),
     );
   }
 }
